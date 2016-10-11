@@ -158,3 +158,71 @@ void MyImage::EnhenceContrast(int minValue, int maxValue){
         buffer[i] = f*buffer[i]+d;
     }
 }
+void MyImage::Dither(){
+
+      unsigned char* buffer = GetData();
+
+    int err;
+    int n ;
+    int newVal ;
+    //on parcours la hauteur
+
+    for(int i=0; i<GetHeight() -1; i++){ // rajout structure de contrôle
+
+        //on parcours la largeur
+        for(int j=0; j<GetWidth()-1; j++){
+
+            //on parcours un pixel
+            for(int k=0; k<3; k++){
+                    n = (i*GetWidth()+j)*3+k ;
+                    if ( buffer[n] < 127)
+                    {
+
+                        err = buffer[n] ;
+                        buffer[n] = 0;
+                    }
+                    else
+                    {
+                        err = buffer[n] - 255;
+                        buffer[n] = 255 ;
+                    }
+
+                    // pixel 2 + coutrôle des bordures
+                    newVal = buffer[n+3] + ((7/16.)*err);
+                    if ( newVal < 0)
+                       newVal = 0;
+                    else if ( newVal >255)
+                        newVal = 255;
+                    buffer[n+3] = newVal;
+
+                    //pixel 3 + contrôle des bordures
+                    newVal = buffer[n+3] + ((7/16.)*err);
+                    if ( newVal < 0)
+                       newVal = 0;
+                    else if ( newVal >255)
+                        newVal = 255;
+                    buffer[n+GetWidth() *3] = buffer[n + GetWidth()*3] + ((5/16.)*err);
+
+                    // pixel 4  + contrôle des bordures
+                    newVal = buffer[n+3] + ((7/16.)*err);
+                    if ( newVal < 0)
+                       newVal = 0;
+                    else if ( newVal >255)
+                        newVal = 255;
+                    buffer[(n + GetWidth()*3) -3] = buffer[(n + GetWidth()*3)-3] + ((1/16.)*err);
+
+                    // pixel 5  + contrôle des bordures
+                    newVal = buffer[n+3] + ((7/16.)*err);
+                    if ( newVal < 0)
+                       newVal = 0;
+                    else if ( newVal >255)
+                        newVal = 255;
+                    buffer[(n + GetWidth()*3) +3] = buffer[(n+ GetWidth()*3)+3] + ((3/16.)*err);
+
+
+
+                }
+            }
+        }
+
+    }

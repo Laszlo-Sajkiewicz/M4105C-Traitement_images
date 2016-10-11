@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
@@ -37,6 +38,15 @@
 		<Linker>
 			<Add option="`wx-config --libs`" />
 		</Linker>
+		<Unit filename="MyHistogram.cpp" />
+		<Unit filename="MyHistogram.hpp" />
+		<Unit filename="MyImage.cpp" />
+		<Unit filename="MyImage.hpp" />
+		<Unit filename="MyRotateDialog.cpp" />
+		<Unit filename="MyRotateDialog.hpp" />
+		<Unit filename="MyThresholdDialog.cpp" />
+		<Unit filename="MyThresholdDialog.hpp" />
+		<Unit filename="munier_adli_sajkiewicz.cpp" />
 		<Extensions>
 			<envvars />
 			<code_completion />

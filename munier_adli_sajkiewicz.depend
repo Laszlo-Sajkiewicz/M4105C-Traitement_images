@@ -1677,3 +1677,44 @@
 	"MyRotateDialog.hpp"
 	"MyHistogram.hpp"
 
+1475496765 source:/users/info/etu-s4/sajkiewl/c++/M4105C-Traitement_images/MyHistogram.cpp
+	"MyHistogram.hpp"
+
+1475496765 /users/info/etu-s4/sajkiewl/c++/M4105C-Traitement_images/MyHistogram.hpp
+	<wx/wxprec.h>
+	<wx/wx.h>
+	"MyImage.hpp"
+
+1475497466 /users/info/etu-s4/sajkiewl/c++/M4105C-Traitement_images/MyImage.hpp
+	<wx/wxprec.h>
+	<wx/wx.h>
+
+1475496765 source:/users/info/etu-s4/sajkiewl/c++/M4105C-Traitement_images/MyRotateDialog.cpp
+	"MyRotateDialog.hpp"
+	<wx/intl.h>
+	<wx/string.h>
+
+1475496765 /users/info/etu-s4/sajkiewl/c++/M4105C-Traitement_images/MyRotateDialog.hpp
+	<wx/radiobox.h>
+	<wx/button.h>
+	<wx/dialog.h>
+
+1475496765 source:/users/info/etu-s4/sajkiewl/c++/M4105C-Traitement_images/MyThresholdDialog.cpp
+	"MyThresholdDialog.hpp"
+
+1475496765 /users/info/etu-s4/sajkiewl/c++/M4105C-Traitement_images/MyThresholdDialog.hpp
+	<wx/wxprec.h>
+	<wx/wx.h>
+
+1476171272 source:/users/info/etu-s4/sajkiewl/c++/M4105C-Traitement_images/munier_adli_sajkiewicz.cpp
+	<wx/wxprec.h>
+	<wx/wx.h>
+	"MyImage.hpp"
+	<time.h>
+	"MyThresholdDialog.hpp"
+	"MyRotateDialog.hpp"
+	"MyHistogram.hpp"
+
+1476171138 source:/users/info/etu-s4/sajkiewl/c++/M4105C-Traitement_images/MyImage.cpp
+	"MyImage.hpp"
+

@@ -61,25 +61,26 @@ private:
 enum
 {
 	ID_Hello = 1,
-	ID_About = 2,
-	ID_EnCours = 3,
-	ID_PlusLarge = 4,
-	ID_MoinsLarge = 5,
-	ID_Open = 6,
-	ID_Save = 7,
-	ID_MiroirHorizontal = 8,
-	ID_MiroirVertical = 9,
-	ID_Blur = 10,
-	ID_RotationPlus90 = 11,
-	ID_RotationMoins90 = 12,
-	ID_Rotation180 = 13,
-	ID_Negative = 14,
-	ID_Desaturate = 15,
-	ID_Threshold = 16,
-	ID_Posterize = 17,
-	ID_Rotation = 18,
-	ID_NombreCouleurs = 19,
-	ID_Contrast = 20
+	ID_About ,
+	ID_EnCours ,
+	ID_PlusLarge ,
+	ID_MoinsLarge ,
+	ID_Open ,
+	ID_Save ,
+	ID_MiroirHorizontal ,
+	ID_MiroirVertical ,
+	ID_Blur ,
+	ID_RotationPlus90 ,
+	ID_RotationMoins90 ,
+	ID_Rotation180 ,
+	ID_Negative ,
+	ID_Desaturate ,
+	ID_Threshold ,
+	ID_Posterize ,
+	ID_Rotation ,
+	ID_NombreCouleurs ,
+	ID_Contrast ,
+	ID_Dither
 };
 
 
@@ -110,22 +111,22 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 	wxMenu *menuHelp = new wxMenu ;
 
 
-	menuFile->Append(ID_Hello, wxT("Hello...\tCtrl-H")) ;
+	menuFile->Append(ID_Hello, wxT("Hello...\tCtrl-H")) ; // raccourci ctrl H
 	Bind(wxEVT_MENU, &MyFrame::OnHello, this, ID_Hello) ;
 
-	menuFile->Append(ID_Open, wxT("Open")) ;
+	menuFile->Append(ID_Open, wxT("Open...\tCtrl-O")) ; // raccourci ctrl + O pour ouvrir
 	Bind(wxEVT_MENU, &MyFrame::OnOpenImage, this, ID_Open) ;
 
-	menuFile->Append(ID_Save, wxT("Save")) ;
+	menuFile->Append(ID_Save, wxT("Save...\tCtrl-S")) ; // raccourci ctrl + S pour sauvergarder
 	Bind(wxEVT_MENU, &MyFrame::OnSaveImage, this, ID_Save) ;
 
-	menuFile->Append(ID_PlusLarge, wxT("Plus Large\tCtrl-+"));
+	menuFile->Append(ID_PlusLarge, wxT("Plus Large\tCtrl-+")); //racourci ctrl + + pour agrandir  la frame
 	Bind(wxEVT_MENU, &MyFrame::OnLarge, this, ID_PlusLarge);
 
-	menuFile->Append(ID_MoinsLarge, wxT("Moins Large\tCtrl--"));
+	menuFile->Append(ID_MoinsLarge, wxT("Moins Large\tCtrl--")); // raccourci ctrl + - pour rétrecir la frame
 	Bind(wxEVT_MENU, &MyFrame::OnLarge, this, ID_MoinsLarge);
 
-	menuFile->Append(ID_About, wxT("About"));
+	menuFile->Append(ID_About, wxT("About..\tCtrl-?")); // raccourci pour ctrl + ? pour about
 	Bind(wxEVT_MENU, &MyFrame::OnAbout, this, ID_About);
 
 	menuFile->Append(wxID_EXIT) ;
@@ -165,11 +166,14 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 	menuProcess->Append(ID_Rotation,wxT("Rotation"));
 	Bind(wxEVT_MENU, &MyFrame::OnProcessImage, this, ID_Rotation);
 
-	menuProcess->Append(ID_NombreCouleurs,wxT("Colors Number"));
+	menuProcess->Append(ID_NombreCouleurs,wxT("Colors Number...\tCtrl-C")); // raccourcis ctrl -C pour le nombre de couleurs
 	Bind(wxEVT_MENU, &MyFrame::OnProcessImage, this, ID_NombreCouleurs);
 
 	menuProcess->Append(ID_Contrast,wxT("Contrast"));
 	Bind(wxEVT_MENU, &MyFrame::OnProcessImage, this, ID_Contrast);
+
+	menuProcess->Append(ID_Dither,wxT("Dither...\tCtrl-D")); // raccourci ctrl -D pour dithering
+	Bind(wxEVT_MENU, &MyFrame::OnProcessImage,this,ID_Dither);
 
 
 	menuHelp->Append(ID_EnCours, wxT("En Cours"));
@@ -279,6 +283,14 @@ void MyFrame::OnProcessImage(wxCommandEvent& event){
         }
         else wxLogMessage(wxT("Aucune image chargée"));
         break;
+    case ID_Dither :
+        if ( this->m_panel->getImagePtr() != nullptr) {
+             this->m_panel->getImagePtr()->Dither() ;
+             Refresh();
+        }
+        else wxLogMessage(wxT("Aucune image chargée"));
+        break;
+
     default:
         break;
 
@@ -324,7 +336,7 @@ void MyFrame::OnLarge(wxCommandEvent& event)
 
 void MyFrame::OnAbout(wxCommandEvent& event)
 {
-	wxLogMessage(wxT("Auteur : Tom Munier - 2016"));
+	wxLogMessage(wxT("Projet Adli-Munier-Sajkiewicz 2016"));
 }
 
 void MyFrame::OnExit(wxCommandEvent& event)

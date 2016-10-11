@@ -19,6 +19,7 @@ public:
     void Posterize();
     int NombreCouleurs();
     void EnhenceContrast(int minValue, int maxValue);
+    void Dither(); // void dither tp9
 };
 
 #endif
